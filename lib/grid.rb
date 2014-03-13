@@ -1,63 +1,33 @@
+require_relative "./cell.rb"
+
 class Grid
+  attr_reader :cells
 
-DEFAULT_CELLS_LENGTH = 81
+  def initialize(initial_values)
+    @cells = []
+    fill_cells(initial_values)
+  end
 
-	attr_reader :cells
+  def fill_cells(vals)
+    vals.each_char {|char| @cells << Cell.new(char.to_i)}
+  end
 
-	def initialize(puzzle)
-		puzzle = [[1,2,3,4,5,6,7,8,9] * 9]
-		@cells = puzzle.transpose
-		raise "WRONG NUMBER OF CELLS" if !has_correct_number_of_cells?
-	end
+  def rows
+    cells.each_slice(9).to_a
+  end
 
-	def has_correct_number_of_cells?
-		@cells.length == DEFAULT_CELLS_LENGTH
-	end
+  def cols
+    @cells.transpose
+  end
 
-
-
+  def boxes
+    threes = cells.each_slice(3).to_a
+    boxes = Array.new(9, [])
+    for i in 0...9
+      boxes[i] = threes[0] + threes[3] + threes[6]
+      threes.rotate!
+    end
+    boxes
+  end
 
 end
-
-
-
-# class Grid
-
-
-
-# 	def initialize
-# 		@cells = #generate 81 cells
-# 	end
-
-#   def initialize(initial_values)
-#   end
-
-# 	attr_reader :cells
-
-# 	def solve
-# 	end
-
-# 	def solve
-#     outstanding_before, looping = SIZE, false
-#     while !solved? && !looping
-#       try_to_solve # ask each cell to solve itself
-#       outstanding         = @cells.count {|c| c.solved? }
-#       looping             = outstanding_before == outstanding       
-#       outstanding_before  = outstanding     
-#     end 
-#   end
-
-#   def solved?
-#     # a grid is solved if all cells are filled out, maybe using
-#     # .all? method
-#   end
-
-#   def inspect
-#     # iterate over all cells and print the grid
-#   end
-
-
-# end
-
-
-	

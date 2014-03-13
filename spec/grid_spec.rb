@@ -1,34 +1,53 @@
 require 'grid'
 
 describe Grid do
-  context "initialization" do
-    let(:puzzle) { '015003002000100906270068430490002017501040380003905000900081040860070025037204600'}
-    let(:grid) { Grid.new(puzzle) }
+  let(:puzzle) { '015003002000100906270068430490002017501040380003905000900081040860070025037204600' }
+  let(:grid) { Grid.new(puzzle) }
+
+  context 'initialize' do
+    
 
     it 'should have 81 cells' do
-    	expect(grid).to have_correct_number_of_cells
-    	puts grid.cells.class
+      expect(grid.cells.size).to eq 81
     end
-    
-    xit 'should have an unsolved first cell' do
-    	expect(grid.cells.first).to eq(0)	
-    
+
+    it 'should have an unsolved first cell' do
+      expect(grid.cells.first).not_to be_solved
     end
-    
-    xit 'should have a solved second cell with value 1' do
-    
+
+    it 'should have a solved second cell with value 1' do
+      expect(grid.cells[1].value).to eq 1 
+    end
+
+    xit 'knows when it is solved' do
+      grid.cells.each {|cell| cell.solve}
+      expect(grid).to be_solved
     end
   end
-end	
 
+  context 'Rows, cols and squares' do
+   
+    it 'knows each row has 9 cells' do
+      expect(grid.rows.first.size).to eq 9
+    end
 
-  # describe Grid do
-  # let(:grid) { #init in here }
-  # context "solving sudoku" do
-  #   it "can solve the puzzle" do
-  #     expect(grid.solved?).to be_false
-  #     grid.solve
-  #     expect(grid.solved?).to be_true
-  #     expect(grid.to_s).to eq('615493872348127956279568431496832517521746389783915264952681743864379125137254698')
-  #   end
-  # end
+    it 'knows there are 9 rows' do
+      expect(grid.rows.size).to eq 9
+    end
+
+    it 'knows first row' do
+      expect(grid.rows.first[5].value).to eq 3
+    end
+
+    it 'knows each column has 9 cells' do
+      expect(grid.cols.first.size).to eq 9
+    end
+    it 'knows there are 9 columns' do
+      expect(grid.cols.size).to eq 9
+    end
+    it 'knows first column' do
+      expect(grid.cols.first[3].value).to eq 4
+    end
+end 
+
+end
