@@ -13,15 +13,15 @@ class Grid
   end
 
   def rows
-    cells.each_slice(9).to_a
+    @cells.each_slice(9).to_a
   end
 
   def cols
-    @cells.transpose
+    rows.transpose
   end
 
   def boxes
-    threes = cells.each_slice(3).to_a
+    threes = @cells.each_slice(3).to_a
     boxes = Array.new(9, [])
     for i in 0...9
       boxes[i] = threes[0] + threes[3] + threes[6]

@@ -48,6 +48,16 @@ describe Grid do
     it 'knows first column' do
       expect(grid.cols.first[3].value).to eq 4
     end
-end 
+
+    it 'knows each box has 9 cells' do
+      expect(grid.boxes.first.size).to eq 9
+    end
+    it 'knows there are 9 boxes' do
+      expect(grid.boxes.size).to eq 9
+    end
+    it 'knows first box' do
+      expect(grid.boxes.first[7].value).to eq 7
+    end
+  end 
 
 end
