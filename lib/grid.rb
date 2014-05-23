@@ -30,4 +30,23 @@ class Grid
     boxes
   end
 
+
+
+  # def solve
+  #   outstanding_before, looping = SIZE, false
+  #   while !solved? && !looping
+  #     try_to_solve # ask each cell to solve itself
+  #     outstanding         = @cells.count {|c| c.solved? }
+  #     looping             = outstanding_before == outstanding       
+  #     outstanding_before  = outstanding     
+  #   end 
+  # end
+
+  # def solved?
+  #   cells.all? { |cell| cell.solved? }
+  # end
+
+  # def inspect
+  #   # iterate over all cells and print the grid
+  # end
 end

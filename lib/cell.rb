@@ -8,12 +8,13 @@ class Cell
   # @neighbours = neighbours # array of cells
  end
 
- def solve
-  @solved = true
- end
-
  def solved?
   @solved
  end
+
+ def solve
+ 	@solved = true
+ end
+
 
 end
